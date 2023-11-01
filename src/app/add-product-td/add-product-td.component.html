@@ -1,0 +1,91 @@
+<form [formGroup]="myForm">
+  <div class="mb-3">
+    <label for="idInput" class="form-label">Id</label>
+    <input type="text" class="form-control" id="idInput" formControlName="idInput">
+    <div *ngIf="myForm.get('idInput')?.hasError('required')" class="text-danger">
+      Id is required.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="codeInput" class="form-label">Code</label>
+    <input type="text" class="form-control" id="codeInput" formControlName="codeInput">
+    <div *ngIf="myForm.get('codeInput')?.hasError('required')" class="text-danger">
+      Code is required.
+    </div>
+    <div *ngIf="myForm.get('codeInput')?.hasError('pattern')" class="text-danger">
+      Le code doit contenir 8 caractères alphanumériques.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="LibelleInput" class="form-label">Libelle</label>
+    <input type="text" class="form-control" id="LibelleInput" formControlName="LibelleInput">
+    <div *ngIf="myForm.get('LibelleInput')?.hasError('required')" class="text-danger">
+      Libelle is required.
+    </div>
+    <div *ngIf="myForm.get('LibelleInput')?.hasError('minlength')" class="text-danger">
+      Le libellé doit contenir au moins 3 caractères.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="PrixInput" class="form-label">Prix unitaire</label>
+    <input type="text" class="form-control" id="PrixInput" formControlName="PrixInput">
+    <div *ngIf="myForm.get('PrixInput')?.hasError('required')" class="text-danger">
+      Prix unitaire is required.
+    </div>
+    <div *ngIf="myForm.get('PrixInput')?.hasError('pattern')" class="text-danger">
+      Le prix unitaire doit contenir uniquement des chiffres et commencer par un chiffre différent de zéro.
+    </div>
+  </div>
+
+
+  <button type="button" class="btn btn-primary" (click)="validateAndShowFields()" [disabled]="!myForm.valid">Suivant</button>
+<!--  <button type="button" class="btn btn-primary" (click)="validateAndShowFields()" [disabled]="!myForm.valid">Submit</button>-->
+
+  <div class="mb-3" *ngIf="showHiddenFields">
+    <label for="IdDetailsInput" class="form-label">Id Details Produit</label>
+    <input type="text" class="form-control" id="IdDetailsInput">
+  </div>
+  <div class="mb-3" *ngIf="showHiddenFields">
+    <label for="DateCInput" class="form-label">Date création</label>
+    <input type="date" class="form-control" id="DateCInput" (change)="updateValidateModif()">
+  </div>
+  <div class="mb-3" *ngIf="ValideBool">
+    <label for="DateMInput" class="form-label">Date dernière modification</label>
+    <input type="date" class="form-control" id="DateMInput">
+  </div>
+  <div class="container mb-3" *ngIf="showHiddenFields">
+    <div class="form-group">
+      <label for="dropdownSelect">Select an item:</label>
+      <select class="form-control" id="dropdownSelect">
+        <option value="item1">Electromenager</option>
+        <option value="item2">Alimentaire</option>
+        <option value="item3">Quincaillerie</option>
+      </select>
+    </div>
+  </div>
+
+<!--  <div class="mb-3" [hidden]="showHiddenFields">-->
+<!--    <label for="detailsInput" class="form-label">Id details produit</label>-->
+<!--    <input type="text" class="form-control" id="detailsInput" >-->
+<!--  </div>-->
+<!--  <div class="mb-3" [hidden]="showHiddenFields">-->
+<!--    <label for="DateCInput" class="form-label">Date creation</label>-->
+<!--    <input type="date" class="form-control" id="DateCInput" (change)="updateValidateModif()">-->
+<!--  </div>-->
+<!--  <div class="mb-3" [hidden]="showHiddenFields || ValideBool">-->
+<!--    <label for="DateMInput" class="form-label">Date dernière modification</label>-->
+<!--    <input type="date" class="form-control" id="DateMInput">-->
+<!--  </div>-->
+<!--  <div class="container mb-3"[hidden]="showHiddenFields">-->
+<!--    <div class="form-group">-->
+<!--      <label for="dropdownSelect">Select an item:</label>-->
+<!--      <select class="form-control" id="dropdownSelect">-->
+<!--        <option value="item1">Electromenager</option>-->
+<!--        <option value="item2">Alimentaire</option>-->
+<!--        <option value="item3">Quincaillerie</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <button type="button" class="btn btn-primary" *ngIf="ValideBool">Ajouter</button>
+</form>

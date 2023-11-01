@@ -1,0 +1,17 @@
+<ol class="list-group">
+  <li *ngFor="let item of ListProduct" class="list-group-item">
+    <div>
+      <h3 class="mb-2">idProduit : {{ item.id }}</h3>
+      <ul class="list-unstyled">
+        <li><strong>Code:</strong> {{ item.code }}</li>
+        <li><strong>Libelle:</strong> {{ item.libelle }}</li>
+        <li><strong>Taux TVA:</strong> {{ item.tauxTva }}</li>
+        <li><strong>Prix Unitaire:</strong> {{ item.prixunitaire }}</li>
+      </ul>
+      <button class="btn" (click)="calculateProductsByLabel(item.libelle)">Calculate</button>
+      <p *ngIf="calculatedLabel === item.libelle" class="mt-3">
+        <strong>Number of products with the same label "{{ item.libelle }}":</strong> {{ calculatedCount }}
+      </p>
+    </div>
+  </li>
+</ol>
